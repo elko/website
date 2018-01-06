@@ -1,0 +1,8 @@
+/app/assets.json
+/app/lib/
+/app/secret.py
+/app/static/assets/
+
+.DS_Store
+*.pyc
+*.pyo
