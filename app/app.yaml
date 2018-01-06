@@ -1,0 +1,24 @@
+# Public Domain (-) 2018-present, The Elko Authors.
+# See the Elko UNLICENSE file for details.
+
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+- url: /humans.txt
+  static_files: static/humans.txt
+  upload: static/humans.txt
+  expiration: 6h
+  secure: always
+
+- url: /robots.txt
+  static_files: static/robots.txt
+  upload: static/robots.txt
+  expiration: 6h
+  secure: always
+
+- url: .*
+  script: elko.app
+  secure: always
