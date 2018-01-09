@@ -65,19 +65,18 @@ EOF
 
   echo
   domsg ">> Validating file integrity"
-  echo
 
   cd "$tmpdir"
   echo "$digest  $digest.tar" > elko.checksum
-  shasum -a 512256 -c elko.checksum || exitmsg "Integrity check failed on the downloaded Elko release file"
+  shasum -a 512256 -c elko.checksum -s || exitmsg "Integrity check failed on the downloaded Elko release file"
 
   echo
   domsg ">> Installing the Elko binary to /usr/local/bin/elko"
   echo
 
-  tar xf "$digest.tar"
-  mkdir -p /usr/local/bin
-  mv elko /usr/local/bin/elko
+  tar xf "$digest.tar" || exitmsg "Unable to untar the downloaded Elko release file"
+  mkdir -p /usr/local/bin || exitmsg "Unable to create /usr/local/bin. Please re-run script as sudo"
+  mv elko /usr/local/bin/elko || exitmsg "Unable to create /usr/local/bin/elko. Please re-run script as sudo"
 
   rm -rf "$tmpdir"  
 
